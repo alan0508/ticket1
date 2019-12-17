@@ -35,14 +35,16 @@ pwd_ele.send_keys(pwd)
 time.sleep(3)
 driver.find_element_by_id('dologin').click()
 
-
 #点击更多文件夹
 time.sleep(5)
 driver.find_element_by_id('_mail_component_87_87').click()
 time.sleep(2)
 driver.find_element_by_id('_mail_component_229_229').click()
+#driver.find_element_by_xpath('//span[@title="12306"]').click()
 time.sleep(2)
 
+#获取每页的邮件列表
+siglePageList = driver.find_elements_by_xpath('//*[@class="tv0"]/div')
 sigleId= str(siglePageList[1].get_attribute('id'))
 driver.find_element_by_id(sigleId).click()
 
