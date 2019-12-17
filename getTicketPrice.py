@@ -19,6 +19,10 @@ class priGet(object):
 		priceFr=self.driver.find_element_by_class_name('oD0')
 		time.sleep(1)
 		self.driver.switch_to_frame(priceFr)
+		# ele = self.driver.find_element_by_xpath(
+		# 	'//div[@style="line-height: 20px; color: #000000; padding-top: 5px; padding-bottom: 5px; font-weight: bold;"]')
+		# string = str(ele.text.encode('utf-8'))
+		# return  string
 
 		ele = self.driver.find_elements_by_xpath('//div[@style="line-height: 20px; font-size: 12px;"]')
 		if ele !=[]:
@@ -26,8 +30,8 @@ class priGet(object):
 		else:
 			try:
 				ele = self.driver.find_element_by_xpath('//*[@id="content"]/b')
-				string = str(ele.text[50:120].encode('utf-8'))
-			except NoSuchElementException:
+				string = str(ele.text[50:250].encode('utf-8'))
+			except Exception:
 				string = '票款共计0.0元'
 		print string
 		return  string
@@ -54,6 +58,8 @@ class getPrice(object):
 				if u'票款共计' in list:
 					result2 = re.findall(parton,str(list))[0]
 					result = float(result2)
+			if u'属等价改签' in self.string:
+				result = 0.0
 		else:
 			result = 0.0
 		return result
